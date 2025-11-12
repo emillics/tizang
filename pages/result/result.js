@@ -1,7 +1,8 @@
 // pages/result/result.js
 Page({
   data: {
-    result: {}
+    result: {},
+    isBackPressed: true //是否按了返回键
   },
 
   onLoad: function (options) {
@@ -22,10 +23,16 @@ Page({
 
   // 格式化答案显示
   formatAnswer: function(answer) {
+    if (!answer) {
+      return '无';
+    }
     if (Array.isArray(answer)) {
-      return answer.join(', ')
+      if (answer.length === 0) {
+        return '无';
+      }
+      return answer.join(', ');
     } else {
-      return answer
+      return String(answer);
     }
   },
 
@@ -37,30 +44,35 @@ Page({
       return correctAnswer === optionId;
     }
   },
+
+  //再考一次
+  examAgain: function() {
+    this.data.isBackPressed = false;
+    wx.reLaunch({
+      url: '../exam/exam'
+    })
+  },
   
   // 返回登录页
   goBackToLogin: function() {
+    this.data.isBackPressed = false;
     wx.reLaunch({
       url: '../login/login'
     })
   },
-  
-  // 处理页面返回事件
-  onBackPress: function() {
-    wx.showModal({
-      title: '确认',
-      content: '确定要结束当前考试吗？',
-      success: (res) => {
-        if (res.confirm) {
-          // 返回到登录页
-          wx.reLaunch({
-            url: '../login/login'
-          });
-        }
-      }
+
+  onShow: function() {
+    // 重新设置返回按钮的处理
+    wx.setNavigationBarTitle({
+      title: '题藏'
     });
-    
-    // 阻止默认返回行为
-    return true;
-  }
+  },
+
+  onUnload: function () {
+    if (this.data.isBackPressed) {
+      wx.reLaunch({
+        url: '../login/login'
+      })
+    }
+  },
 })

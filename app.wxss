@@ -199,11 +199,7 @@
   background-color: #f0f8ff;
 }
 
-.answer-item.selected {
-  border-color: #3498db;
-  background-color: #e3f2fd;
-  box-shadow: 0 5rpx 15rpx rgba(52, 152, 219, 0.2);
-}
+
 
 .answer-item.wrong {
   border-color: #e74c3c;

@@ -21,7 +21,7 @@
       </view>
 
       <view class="error-detail">
-        <text class="user-answer">您的答案：{{formatAnswer(wrongQuestion.userAnswer)}}</text>
+        <text class="user-answer">您的答案：{{formatAnswer(wrongQuestion.userAnswer) !== '无' ? formatAnswer(wrongQuestion.userAnswer) : '未作答'}}</text>
         <text class="correct-answer">正确答案：{{formatAnswer(wrongQuestion.correctAnswer)}}</text>
       </view>
 

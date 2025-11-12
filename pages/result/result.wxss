@@ -96,6 +96,12 @@
   display: block;
 }
 
+/* 正确答案项的特殊背景 */
+.answer-item.correct {
+  background: linear-gradient(135deg, #e3f2fd, #c8e6c9) !important;
+  border-color: #4caf50 !important;
+}
+
 .btn-primary {
   background: linear-gradient(135deg, #3498db, #2980b9);
   color: white;
