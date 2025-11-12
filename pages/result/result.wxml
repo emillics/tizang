@@ -37,8 +37,8 @@
   </view>
   <view class="nav-area">
     <View class="btn-row">
-      <button class="btn-primary" bindtap="examAgain">再考一次</button>
-      <button class="btn-primary" bindtap="goBackToLogin">结束考试</button>
+      <button class="btn-primary result-btn" bindtap="examAgain">再考一次</button>
+      <button class="btn-primary result-btn" bindtap="goBackToLogin">结束考试</button>
     </View>
   </view>
   
