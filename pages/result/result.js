@@ -21,30 +21,6 @@ Page({
     }
   },
 
-  // 格式化答案显示
-  formatAnswer: function(answer) {
-    if (!answer) {
-      return '无';
-    }
-    if (Array.isArray(answer)) {
-      if (answer.length === 0) {
-        return '无';
-      }
-      return answer.join(', ');
-    } else {
-      return String(answer);
-    }
-  },
-
-  // 判断选项是否为正确答案
-  isCorrectOption: function(correctAnswer, optionId) {
-    if (Array.isArray(correctAnswer)) {
-      return correctAnswer.includes(optionId);
-    } else {
-      return correctAnswer === optionId;
-    }
-  },
-
   //再考一次
   examAgain: function() {
     this.data.isBackPressed = false;

@@ -1,4 +1,6 @@
 <!-- pages/result/result.wxml -->
+<wxs module="resultFormatter" src="../../utils/resultFormatter.wxs"></wxs>
+
 <view class="page-container">
   <view class="score-container">
     <view class="score-title">考试成绩</view>
@@ -21,11 +23,11 @@
       </view>
 
       <view class="error-detail">
-        <text class="user-answer">您的答案：{{formatAnswer(wrongQuestion.userAnswer) !== '无' ? formatAnswer(wrongQuestion.userAnswer) : '未作答'}}</text>
-        <text class="correct-answer">正确答案：{{formatAnswer(wrongQuestion.correctAnswer)}}</text>
+        <text class="user-answer">您的答案：{{resultFormatter.formatAnswer(wrongQuestion.userAnswer)}}</text>
+        <text class="correct-answer">正确答案：{{resultFormatter.formatAnswer(wrongQuestion.correctAnswer)}}</text>
       </view>
 
-      <view class="answer-item {{isCorrectOption(wrongQuestion.correctAnswer, option.id) ? 'correct' : ''}}" 
+      <view class="answer-item {{resultFormatter.isCorrectOption(wrongQuestion.correctAnswer, option.id) ? 'correct' : ''}}" 
             wx:for="{{wrongQuestion.question.options}}"
             wx:for-item="option"
             wx:key="id">
@@ -33,6 +35,11 @@
       </view>
     </view>
   </view>
-
-  <button class="btn-primary" bindtap="goBackToLogin">结束</button>
+  <view class="nav-area">
+    <View class="btn-row">
+      <button class="btn-primary" bindtap="examAgain">再考一次</button>
+      <button class="btn-primary" bindtap="goBackToLogin">结束考试</button>
+    </View>
+  </view>
+  
 </view>

@@ -1,0 +1,27 @@
+var formatAnswer = function (answer) {
+  if (!answer) {
+    return '未作答';
+  }
+  if (answer.constructor && answer.constructor == 'Array') {
+    if (answer.length === 0) {
+      return '未作答';
+    }
+    if (answer.length === 1) {
+      return answer[0];
+    }else return answer.join(', ');
+  } else {
+    return answer.toString();
+  }
+}
+var isCorrectOption = function(correctAnswer, optionId) {
+  if (correctAnswer.constructor && correctAnswer.constructor == 'Array') {
+    return correctAnswer.indexOf(optionId) !== -1;
+  } else {
+    return correctAnswer === optionId;
+  }
+}
+
+module.exports = {
+  formatAnswer: formatAnswer,
+  isCorrectOption: isCorrectOption
+}

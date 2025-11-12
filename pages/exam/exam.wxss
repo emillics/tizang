@@ -194,17 +194,6 @@
   margin: 20rpx 0; /* Add some spacing */
 }
 
-/* 按钮排布 - 在固定导航区域内 */
-.btn-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40rpx 30rpx; /* 与内容区域左右对齐，底部间距 */
-  flex-shrink: 0; /* 防止被压缩 */
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .btn {
   flex: 1; /* 平均分配宽度 */
   max-width: 200rpx; /* 限制按钮最大宽度，防止过宽 */

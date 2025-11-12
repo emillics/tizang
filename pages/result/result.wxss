@@ -102,19 +102,6 @@
   border-color: #4caf50 !important;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  border: none;
-  border-radius: 50rpx;
-  padding: 25rpx 40rpx;
-  font-size: 32rpx;
-  margin: 40rpx auto 0;
-  width: 80%;
-  display: block;
-  box-shadow: 0 8rpx 20rpx rgba(52, 152, 219, 0.3);
-}
-
 /* 错题区域新增样式 */
 .question-top-bar {
   padding: 20rpx 20rpx 0 20rpx;
