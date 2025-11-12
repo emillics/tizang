@@ -1,0 +1,38 @@
+<!-- pages/result/result.wxml -->
+<view class="page-container">
+  <view class="score-container">
+    <view class="score-title">考试成绩</view>
+    <view class="score-value">{{result.score}}</view>
+    <view class="score-stats">
+      <text>总分：{{result.total * 5}}分</text>
+      <text>正确：{{result.correct}}题</text>
+      <text>错误：{{result.wrong}}题</text>
+    </view>
+  </view>
+
+  <view wx:if="{{result.wrongQuestions.length > 0}}" class="card">
+    <view class="wrong-questions-title">错题回顾</view>
+    <view wx:for="{{result.wrongQuestions}}" wx:for-item="wrongQuestion" wx:for-index="index" class="question-container">
+      <view class="question-header">
+        <text class="question-title">{{index + 1}}. {{wrongQuestion.question.title}}</text>
+        <text class="{{wrongQuestion.question.type === 'single' ? 'question-type-single' : wrongQuestion.question.type === 'multiple' ? 'question-type-multiple' : 'question-type-judgment'}}">
+          {{wrongQuestion.question.type === 'single' ? '单选' : wrongQuestion.question.type === 'multiple' ? '多选' : '判断'}}
+        </text>
+      </view>
+
+      <view class="error-detail">
+        <text class="user-answer">您的答案：{{formatAnswer(wrongQuestion.userAnswer)}}</text>
+        <text class="correct-answer">正确答案：{{formatAnswer(wrongQuestion.correctAnswer)}}</text>
+      </view>
+
+      <view class="answer-item {{isCorrectOption(wrongQuestion.correctAnswer, option.id) ? 'correct' : ''}}" 
+            wx:for="{{wrongQuestion.question.options}}"
+            wx:for-item="option"
+            wx:key="id">
+        <text class="answer-text">{{option.id}}. {{option.content}}</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-primary" bindtap="goBackToLogin">结束</button>
+</view>

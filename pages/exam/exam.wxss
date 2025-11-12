@@ -1,0 +1,278 @@
+/* pages/exam/exam.wxss */
+/* 定义卡片样式的样式 - 现在尺寸由JS动态计算 */
+.question-card {
+  background: white;
+  border-radius: 20rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow: hidden; /* 确保圆角生效 */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+}
+
+.timer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #3498db, #8e44ad); /* 参考登录页背景渐变风格 */
+  color: white;
+  text-align: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.timer-warning {
+  background: linear-gradient(135deg, #f39c12, #e67e22); /* 警告颜色渐变 */
+}
+
+.timer-critical {
+  background: linear-gradient(135deg, #e74c3c, #c0392b); /* 危险颜色渐变 */
+}
+
+.timer-text {
+  transition: all 0.2s ease;
+}
+
+/* 闪烁动画 */
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.flash {
+  animation: flash 0.5s infinite;
+}
+
+.question-swiper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+  flex-wrap: wrap;
+  flex-shrink: 0; /* 防止头部被压缩 */
+}
+
+.question-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-right: 20rpx;
+  line-height: 1.5;
+}
+
+.question-type {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  border-radius: 30rpx; /* More rounded appearance */
+  font-size: 20rpx; /* Smaller font size */
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 5rpx;
+  line-height: 1.2; /* Better vertical alignment */
+}
+
+.question-type-single {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.question-type-multiple {
+  background: linear-gradient(135deg, #e67e22, #d35400);
+}
+
+.question-type-judgment {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+/* 上部可滚动内容区域 */
+.content-area {
+  flex: 1;
+  padding: 0; /* 移除padding，由内部元素控制间距 */
+}
+
+/* 顶部标题栏区域 */
+.question-top-bar {
+  padding: 20rpx 20rpx 0 20rpx;
+  position: relative;
+  flex-shrink: 0; /* 防止被压缩 */
+}
+
+/* 题型指示器 - 扇形背景 */
+.question-type-indicator-single {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  z-index: 1;
+}
+
+.question-type-indicator-multiple {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: linear-gradient(135deg, #e67e22, #d35400);
+  color: white;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  z-index: 1;
+}
+
+.question-type-indicator-judgment {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  font-size: 20rpx;
+  font-weight: bold;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  z-index: 1;
+}
+
+/* 题目内容区域 */
+.question-content {
+  padding: 80rpx 40rpx 40rpx 40rpx; /* 为顶部标题栏留出空间 */
+  flex: 1;
+}
+
+/* 下部固定导航区域 */
+.nav-area {
+  padding: 20rpx 0 0; /* 上部有一些间隔 */
+  background-color: inherit;
+  flex-shrink: 0; /* 防止被压缩 */
+}
+
+/* 答案选项样式 (支持点击交互) */
+.answer-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 20rpx 0;
+  padding: rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 15rpx;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+  cursor: pointer; /* 增加指针效果 */
+}
+
+.answer-item.selected {
+  background: linear-gradient(135deg, #e3f2fd, #c8e6c9); /* 浅绿色渐变背景 */
+  border-color: #4caf50;
+  box-shadow: 0 5rpx 15rpx rgba(76, 175, 80, 0.3);
+}
+
+.answer-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.answer-input {
+  margin-top: 12rpx;
+  margin-right: 20rpx;
+  transform: scale(0.8);
+}
+
+.answer-options-container {
+  margin: 20rpx 0; /* Add some spacing */
+}
+
+/* 按钮排布 - 在固定导航区域内 */
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx 30rpx; /* 与内容区域左右对齐，底部间距 */
+  flex-shrink: 0; /* 防止被压缩 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn {
+  flex: 1; /* 平均分配宽度 */
+  max-width: 200rpx; /* 限制按钮最大宽度，防止过宽 */
+  border: none;
+  border-radius: 15rpx;
+  padding: 25rpx 20rpx;
+  font-size: 28rpx;
+  text-align: center;
+  min-width: 0; /* 允许收缩 */
+  box-sizing: border-box;
+  margin: 0 10rpx; /* 按钮间距 */
+}
+
+/* 确保按钮不会超出边界 */
+.btn-prev {
+  background-color: #95a5a6;
+  color: white;
+  flex: 1;
+  margin: 0 5rpx;
+}
+
+.btn-next {
+  background-color: #bdc3c7; /* 默认禁用状态 */
+  color: white;
+  flex: 1;
+  margin: 0 5rpx;
+}
+
+.btn-next.btn-active {
+  background-color: #3498db; /* 活跃状态 */
+}
+
+.btn-next.btn-disabled {
+  background-color: #bdc3c7; /* 禁用状态 */
+}
+
+.btn-submit {
+  background-color: #bdc3c7; /* 默认禁用状态 */
+  color: white;
+  flex: 1;
+  margin: 0 5rpx;
+}
+
+.btn-submit.btn-active {
+  background-color: #e74c3c; /* 活跃状态 */
+}
+
+.btn-submit.btn-disabled {
+  background-color: #bdc3c7; /* 禁用状态 */
+}
+
+.question-count-text {
+  flex: 2; /* 中间文本占用更多空间 */
+  text-align: center;
+  font-size: 28rpx;
+  color: #7f8c8d;
+  padding: 0 20rpx;
+  max-width: 300rpx; /* 限制中间文本区域的宽度 */
+}
+
+/* 确保swiper-item内容正确自适应高度 */
+swiper-item {
+  display: flex;
+  align-items: stretch;
+  height: 100vh; /* 全屏高度 */
+}
+
+/* 修复滚动问题 */
+page {
+  height: 100%;
+}

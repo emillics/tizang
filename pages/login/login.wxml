@@ -1,0 +1,24 @@
+<!-- pages/login/login.wxml -->
+<view class="page-container">
+  <view class="title">题藏</view>
+  
+  <view class="card">
+    <view class="subtitle">欢迎来到题藏</view>
+    <view class="tip-text">点击下方按钮开始模拟考试</view>
+  </view>
+  
+  <view class="card">
+    <view class="subtitle">考试说明</view>
+    <view class="tip-text">考试包含单选题、多选题和判断题共20题</view>
+    <view class="tip-text">考试时间10分钟，每题5分，共100分</view>
+    <view class="tip-text">请先验证您的注册手机号</view>
+  </view>
+  
+  <button class="btn-primary" bindtap="startExam">
+    开始考试
+  </button>
+  
+  <view class="tip-text" style="margin-top: 40rpx; font-size: 24rpx;">
+    请输入您的注册手机号
+  </view>
+</view>

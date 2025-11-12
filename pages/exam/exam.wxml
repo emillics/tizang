@@ -1,0 +1,104 @@
+<!-- pages/exam/exam.wxml -->
+<view class="timer-container" wx:if="{{countdown > 0}}" bindtap="toggleTimerColor">
+  <text wx:if="{{countdown > 60}}" class="timer-text">剩余时间: {{formattedTime}}</text>
+  <text wx:elif="{{countdown > 30}}" class="timer-text timer-warning">剩余时间: {{formattedTime}}</text>
+  <text wx:else class="timer-text timer-critical {{isFlashing ? 'flash' : ''}}">剩余时间: {{formattedTime}}</text>
+</view>
+
+<view class="page-container" style="padding-top: {{countdown > 0 ? '120rpx' : '60rpx'}};">
+  <!-- 使用swiper实现幻灯片效果，设置合适的高度 -->
+  <swiper 
+    class="question-swiper" 
+    current="{{currentIndex}}" 
+    bindchange="onSwiperChange"
+    duration="300"
+    circular="{{false}}"
+    skip-hidden-item-layout="true"
+    style="height: 100vh;">
+    
+    <swiper-item wx:for="{{currentPaper}}" wx:for-item="question" wx:for-index="index" wx:key="id">
+      <view 
+        class="question-card" 
+        style="width: {{cardWidth}}px; height: {{cardHeight}}px; margin: 30rpx;">
+        <!-- 上部区域：可滚动内容区 -->
+        <scroll-view 
+          class="content-area" 
+          scroll-y="true"
+          style="height: {{contentHeight}}px;">
+          <view class="question-header">
+            <text class="question-title">{{index + 1}}. {{question.title}}</text>
+            <view class="{{question.type === 'single' ? 'question-type-single' : 
+                question.type === 'multiple' ? 'question-type-multiple' : 
+                'question-type-judgment'}}">
+              {{question.type === 'single' ? '单选' : question.type === 'multiple' ? '多选' : '判断'}}
+            </view>
+          </view>
+
+          <!-- 単选题和判断题 -->
+          <radio-group wx:if="{{question.type === 'single' || question.type === 'judgment'}}" bindchange="onRadioChange">
+            <view class="answer-item" 
+                  wx:for="{{question.options}}" 
+                  wx:for-item="option" 
+                  wx:key="{{index}}-{{option.id}}"
+                  data-question-index="{{index}}" 
+                  data-option-id="{{option.id}}"
+                  bindtap="selectOption"
+                  data-option-id="{{option.id}}">
+              <radio class="answer-input" 
+                     value="{{option.id}}" 
+                     checked="{{isOptionSelected(index, option.id)}}"
+                     color="#3498db" />
+              <text class="answer-text">{{option.id}}. {{option.content}}</text>
+            </view>
+          </radio-group>
+
+          <!-- 多选题 -->
+          <checkbox-group wx:else bindchange="onCheckboxChange">
+            <view class="answer-item" 
+                  wx:for="{{question.options}}" 
+                  wx:for-item="option" 
+                  wx:key="{{index}}-{{option.id}}"
+                  data-question-index="{{index}}" 
+                  data-option-id="{{option.id}}"
+                  bindtap="selectMultipleOption"
+                  data-option-id="{{option.id}}">
+              <checkbox class="answer-input" 
+                        value="{{option.id}}" 
+                        checked="{{isOptionSelected(index, option.id)}}"
+                        color="#3498db" />
+              <text class="answer-text">{{option.id}}. {{option.content}}</text>
+            </view>
+          </checkbox-group>
+        </scroll-view>
+        
+        <!-- 下部区域：固定导航区 -->
+        <view class="nav-area" wx:if="{{index === currentIndex}}" style="height: {{navHeight}}rpx;">
+          <view class="btn-row">
+            <button
+              wx:if="{{index > 0}}"
+              class="btn btn-prev"
+              bindtap="prevQuestion">
+              上一题
+            </button>
+
+            <text class="question-count-text">第{{index + 1}}题/共{{currentPaper.length}}题</text>
+
+            <button
+              wx:if="{{index < currentPaper.length - 1}}"
+              class="btn btn-next {{isQuestionAnswered(index) ? 'btn-active' : 'btn-disabled'}}"
+              bindtap="nextQuestion">
+              下一题
+            </button>
+
+            <button
+              wx:elif="{{index === currentPaper.length - 1}}"
+              class="btn btn-submit {{isQuestionAnswered(index) ? 'btn-active' : 'btn-disabled'}}"
+              bindtap="submitExam">
+              提交
+            </button>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

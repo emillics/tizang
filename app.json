@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/exam/exam",
+    "pages/result/result"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3498db",
+    "navigationBarTitleText": "题藏",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
