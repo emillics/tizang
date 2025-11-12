@@ -67,31 +67,6 @@
   line-height: 1.5;
 }
 
-.question-type {
-  display: inline-block;
-  padding: 6rpx 16rpx;
-  border-radius: 30rpx; /* More rounded appearance */
-  font-size: 20rpx; /* Smaller font size */
-  color: white;
-  font-weight: bold;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 5rpx;
-  line-height: 1.2; /* Better vertical alignment */
-}
-
-.question-type-single {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-}
-
-.question-type-multiple {
-  background: linear-gradient(135deg, #e67e22, #d35400);
-}
-
-.question-type-judgment {
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-}
-
 /* 上部可滚动内容区域 */
 .content-area {
   flex: 1;
@@ -103,46 +78,6 @@
   padding: 20rpx 20rpx 0 20rpx;
   position: relative;
   flex-shrink: 0; /* 防止被压缩 */
-}
-
-/* 题型指示器 - 扇形背景 */
-.question-type-indicator-single {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
-}
-
-.question-type-indicator-multiple {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #e67e22, #d35400);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
-}
-
-.question-type-indicator-judgment {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
 }
 
 /* 题目内容区域 */

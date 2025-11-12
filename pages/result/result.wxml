@@ -17,9 +17,9 @@
     <view wx:for="{{result.wrongQuestions}}" wx:for-item="wrongQuestion" wx:for-index="index" class="question-container">
       <view class="question-header">
         <text class="question-title">{{index + 1}}. {{wrongQuestion.question.title}}</text>
-        <text class="{{wrongQuestion.question.type === 'single' ? 'question-type-single' : wrongQuestion.question.type === 'multiple' ? 'question-type-multiple' : 'question-type-judgment'}}">
+        <view class="question-type {{wrongQuestion.question.type === 'single' ? 'question-type-single' : wrongQuestion.question.type === 'multiple' ? 'question-type-multiple' : 'question-type-judgment'}}">
           {{wrongQuestion.question.type === 'single' ? '单选' : wrongQuestion.question.type === 'multiple' ? '多选' : '判断'}}
-        </text>
+        </view>
       </view>
 
       <view class="error-detail">

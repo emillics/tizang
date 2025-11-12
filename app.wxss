@@ -169,12 +169,15 @@
 
 .question-type {
   display: inline-block;
-  padding: 8rpx 20rpx;
-  border-radius: 30rpx;
-  font-size: 24rpx;
+  padding: 10rpx 10rpx;
+  border-radius: 20rpx;  /* 小巧圆润 */
+  font-size: 22rpx;      /* 更小字体 */
   color: white;
-  margin-top: 10rpx;
+  margin-top: 5rpx;
   font-weight: bold;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);  /* 精致阴影 */
+  text-align: center;
+  min-width: 40rpx;      /* 确保最小宽度 */
 }
 
 .question-type-single {

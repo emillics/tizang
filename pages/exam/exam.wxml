@@ -27,9 +27,7 @@
           style="height: {{contentHeight}}px;">
           <view class="question-header">
             <text class="question-title">{{index + 1}}. {{question.title}}</text>
-            <view class="{{question.type === 'single' ? 'question-type-single' : 
-                question.type === 'multiple' ? 'question-type-multiple' : 
-                'question-type-judgment'}}">
+            <view class="question-type {{question.type === 'single' ? 'question-type-single' : question.type === 'multiple' ? 'question-type-multiple' : 'question-type-judgment'}}">
               {{question.type === 'single' ? '单选' : question.type === 'multiple' ? '多选' : '判断'}}
             </view>
           </view>
@@ -81,7 +79,7 @@
               上一题
             </button>
 
-            <text class="question-count-text">第{{index + 1}}题/共{{currentPaper.length}}题</text>
+            <text class="question-count-text">{{index + 1}}/{{currentPaper.length}}</text>
 
             <button
               wx:if="{{index < currentPaper.length - 1}}"

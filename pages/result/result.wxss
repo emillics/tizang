@@ -109,46 +109,6 @@
   flex-shrink: 0; /* 防止被压缩 */
 }
 
-/* 题型指示器 - 扇形背景 */
-.question-type-indicator-single {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
-}
-
-.question-type-indicator-multiple {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #e67e22, #d35400);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
-}
-
-.question-type-indicator-judgment {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-  color: white;
-  font-size: 20rpx;
-  font-weight: bold;
-  padding: 8rpx 16rpx;
-  border-radius: 8rpx;
-  z-index: 1;
-}
-
 .question-content {
   padding: 80rpx 40rpx 40rpx 40rpx; /* 为顶部标题栏留出空间 */
   flex: 1;

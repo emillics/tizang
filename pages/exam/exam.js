@@ -293,7 +293,7 @@ Page({
       confirmText: '确定',
       success: (res) => {
         if (res.confirm) {
-          performSubmit();
+          this.performSubmit();
         }
       }
     });
@@ -316,7 +316,7 @@ Page({
 
     // 跳转到成绩页面
     this.data.isBackPressed = false;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `../result/result?result=${JSON.stringify(result)}`
     });
   },
