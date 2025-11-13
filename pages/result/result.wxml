@@ -4,7 +4,7 @@
 <view class="page-container">
   <view class="score-container">
     <view class="score-title">考试成绩</view>
-    <view class="score-value">{{result.score}}</view>
+    <view class="score-value {{result.score < 60 ? 'score-value-low' : result.score < 80 ? 'score-value-medium' : 'score-value-high'}}">{{result.score}}</view>
     <view class="score-stats">
       <text>总分：{{result.total * 5}}分</text>
       <text>正确：{{result.correct}}题</text>
@@ -38,7 +38,7 @@
   <view class="nav-area">
     <View class="btn-row">
       <button class="btn-primary result-btn" bindtap="examAgain">再考一次</button>
-      <button class="btn-primary result-btn" bindtap="goBackToLogin">结束考试</button>
+      <button class="btn-primary result-btn end-exam-btn" bindtap="goBackToLogin">结束考试</button>
     </View>
   </view>
   

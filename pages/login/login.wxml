@@ -19,6 +19,6 @@
   </button>
   
   <view class="tip-text" style="margin-top: 40rpx; font-size: 24rpx;">
-    请输入您的注册手机号
+    {{statsText}}
   </view>
 </view>

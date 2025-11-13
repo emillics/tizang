@@ -1,13 +1,37 @@
 // pages/login/login.js
+import { getAllQuestions } from '../../utils/questionParser.js'
+
 const app = getApp()
 
 Page({
   data: {
-    phone: ''
+    phone: '',
+    statsText: '' // 统计数据文本
   },
 
   onLoad: function (options) {
+    this.loadStatistics(); // 加载统计数据
+  },
+
+  // 加载统计数据
+  loadStatistics: function() {
+    const allQuestions = getAllQuestions();
     
+    // 计算各题型总数
+    const singleCount = allQuestions.single ? allQuestions.single.length : 0;
+    const multipleCount = allQuestions.multiple ? allQuestions.multiple.length : 0;
+    const judgmentCount = allQuestions.judgment ? allQuestions.judgment.length : 0;
+    const totalCount = singleCount + multipleCount + judgmentCount;
+    
+    // 计算人员总数
+    const phoneCount = app.globalData.registeredPhones ? app.globalData.registeredPhones.length : 0;
+    
+    // 格造统计文本
+    const statsText = `题库：${totalCount}　　人员：${phoneCount}`;
+    
+    this.setData({
+      statsText: statsText
+    });
   },
 
   // 开始考试 - 弹出手机号输入框
