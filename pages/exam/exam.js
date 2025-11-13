@@ -139,51 +139,51 @@ Page({
   },
 
   // 単选题和判断题的选择事件
-  onRadioChange: function (e) {
-    const questionIndex = this.data.currentIndex
-    const selectedValue = e.detail.value
+  onRadioChange: function (e, questionIndexOverride = null) {
+    const questionIndex = questionIndexOverride !== null ? questionIndexOverride : this.data.currentIndex;
+    const selectedValue = e.detail.value;
 
-    console.log('单选题选择:', questionIndex, selectedValue)
+    console.log('单选题选择:', questionIndex, selectedValue);
 
     let userAnswers = {
       ...this.data.userAnswers
-    }
-    userAnswers[questionIndex] = [selectedValue]
+    };
+    userAnswers[questionIndex] = [selectedValue];
 
     // 更新当前题目回答状态
-    const currentQuestionAnswered = userAnswers[questionIndex] && userAnswers[questionIndex].length > 0
+    const currentQuestionAnswered = userAnswers[questionIndex] && userAnswers[questionIndex].length > 0;
 
     this.setData({
       userAnswers: userAnswers,
       currentQuestionAnswered: currentQuestionAnswered
     }, () => {
       // 更新按钮状态
-      this.updateButtonState()
-    })
+      this.updateButtonState();
+    });
   },
 
   // 多选题的选择事件
-  onCheckboxChange: function (e) {
-    const questionIndex = this.data.currentIndex
-    const selectedValues = e.detail.value
+  onCheckboxChange: function (e, questionIndexOverride = null) {
+    const questionIndex = questionIndexOverride !== null ? questionIndexOverride : this.data.currentIndex;
+    const selectedValues = e.detail.value.sort((a, b) => a.localeCompare(b));
 
-    console.log('多选题选择:', questionIndex, selectedValues)
+    console.log('多选题选择:', questionIndex, selectedValues);
 
     let userAnswers = {
       ...this.data.userAnswers
-    }
-    userAnswers[questionIndex] = selectedValues
+    };
+    userAnswers[questionIndex] = selectedValues;
 
     // 更新当前题目回答状态
-    const currentQuestionAnswered = userAnswers[questionIndex] && userAnswers[questionIndex].length > 0
+    const currentQuestionAnswered = userAnswers[questionIndex] && userAnswers[questionIndex].length > 0;
 
     this.setData({
       userAnswers: userAnswers,
       currentQuestionAnswered: currentQuestionAnswered
     }, () => {
       // 更新按钮状态
-      this.updateButtonState()
-    })
+      this.updateButtonState();
+    });
   },
 
   // 检查答案是否已选
@@ -332,9 +332,7 @@ Page({
 
       // 标准化用户答案和正确答案
       let normalizedUserAnswer = [...userAnswer].sort()
-      let normalizedCorrectAnswer = Array.isArray(question.correctAnswer) ?
-        [...question.correctAnswer].sort() :
-        [question.correctAnswer].sort()
+      let normalizedCorrectAnswer = Array.isArray(question.correctAnswer) ? [...question.correctAnswer].sort() : [question.correctAnswer].sort()
 
       // 检查答案是否正确
       if (JSON.stringify(normalizedUserAnswer) === JSON.stringify(normalizedCorrectAnswer)) {

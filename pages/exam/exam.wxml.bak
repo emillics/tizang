@@ -34,33 +34,40 @@
 
           <!-- 単选题和判断题 -->
           <radio-group wx:if="{{question.type === 'single' || question.type === 'judgment'}}" bindchange="onRadioChange">
-            <label class="answer-item {{isOptionSelected(index, option.id) ? 'selected' : ''}}" 
+            <view class="answer-item {{isOptionSelected(index, option.id) ? 'selected' : ''}}" 
                   wx:for="{{question.options}}" 
                   wx:for-item="option" 
                   wx:key="{{index}}-{{option.id}}"
                   data-question-index="{{index}}" 
+                  data-option-id="{{option.id}}"
+                  bindtap="handleOptionItemClick"
                   data-option-id="{{option.id}}">
-              <radio class="answer-input"
+              <radio class="answer-input" 
                      value="{{option.id}}" 
                      checked="{{isOptionSelected(index, option.id)}}"
-                     color="#3498db" />
+                     color="#3498db"
+                     bindchange="onRadioChange" />
               <text class="answer-text">{{option.id}}. {{option.content}}</text>
-            </label>
+            </view>
           </radio-group>
 
           <!-- 多选题 -->
           <checkbox-group wx:else bindchange="onCheckboxChange">
-            <label class="answer-item {{isOptionSelected(index, option.id) ? 'selected' : ''}}" 
+            <view class="answer-item {{isOptionSelected(index, option.id) ? 'selected' : ''}}" 
                   wx:for="{{question.options}}" 
                   wx:for-item="option" 
                   wx:key="{{index}}-{{option.id}}"
+                  class="{{isOptionSelected(index, option.id) ? 'selected' : ''}}"
+                  data-option-id="{{option.id}}"
+                  bindtap="handleOptionItemClick"
                   data-option-id="{{option.id}}">
-              <checkbox class="answer-input" checked="true" 
+              <checkbox class="answer-input" 
                         value="{{option.id}}" 
                         checked="{{isOptionSelected(index, option.id)}}"
-                        color="#3498db" />
+                        color="#3498db"
+                        bindchange="onCheckboxChange" />
               <text class="answer-text">{{option.id}}. {{option.content}}</text>
-            </label>
+            </view>
           </checkbox-group>
         </scroll-view>
         
